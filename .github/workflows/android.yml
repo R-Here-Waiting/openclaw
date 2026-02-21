@@ -29,12 +29,10 @@ jobs:
       - name: Debug - Check apps directory
         run: ls -la apps/ || echo "apps directory not found"
 
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
       - name: Build APK with debug output
         working-directory: apps/android
         run: |
+          chmod +x gradlew
           ./gradlew assembleDebug --stacktrace
           echo "=== Build Output Directory ==="
           find . -name "*.apk" -type f 2>/dev/null
